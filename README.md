@@ -47,3 +47,7 @@ Contributions are welcome! If you have any ideas, suggestions, or bug reports, p
 
 - Thanks to the developers of the libraries and frameworks used in this project.
 - Special thanks to the open-source community for their continuous support and contributions.
+
+## Play Online
+
+You can also play the game online by visiting the following link: [Play SandBox Online](https://sandbox-coral.vercel.app/)
