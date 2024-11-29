@@ -1,0 +1,33 @@
+'use strict'
+
+import {State} from '../global.js'
+import Particle from './Particle.js'
+import Fire from './Fire.js'
+
+export default class Lava extends Particle {
+    constructor() {
+        super(
+            State.Liquid,
+            { r: 180, g: 5, b: 5},
+            false,
+            100,
+            0,
+            0,
+            100,
+        )
+
+        super.burning = true
+    }
+
+    step(mutator) {
+        if (mutator.is('above', 'Air')) {
+            mutator.above(new Fire(2))
+        }
+
+        if (mutator.isFlammable('above')) {
+            mutator.above().burning = true
+        }
+
+        return mutator
+    }
+}

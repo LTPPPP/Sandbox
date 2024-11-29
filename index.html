@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<!-- COPY RIGHT BELONG TO LAMTANPHAT -->
+
+<head>
+    <title>SandBox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./assets/img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/styles.css">
+</head>
+
+<body>
+    <div id="container">
+        <div id="left-container">
+            <div id="icon">
+                <img src="./assets/img/icon.png" alt="Icon">
+            </div>
+            <div id="system">
+                <button class="select" onclick="window.game.updateCursor()">
+                    <span><i class="fas fa-dot-circle"></i><br>Size</span>
+                </button>
+                <button class="select" onclick="window.game.eraser()">
+                    <span><i class="fas fa-eraser"></i><br>Eraser</span>
+                </button>
+                <button class="select" onclick="window.game.clear()">
+                    <span><i class="fas fa-snowplow"></i><br>Clear</span>
+                </button>
+                <button class="select" onclick="window.game.play()">
+                    <span><i class="fas fa-play"></i><br>Play</span>
+                </button>
+                <button class="select" onclick="window.game.pause()">
+                    <span><i class="fas fa-pause"></i><br>Pause</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="center-container">
+            <canvas id="large-screen" width="600" height="600"></canvas>
+            <div id="large-screen-overlay"></div>
+        </div>
+
+        <div id="right-container">
+            <div></div>
+
+            <div id="small-screen-container">
+                <div id="small-screen">
+                    <br><br><br><br><br><br><br><br>
+                </div>
+                <div id="small-screen-overlay"></div>
+            </div>
+            <button class="select" onclick="window.game.updateSelection('Sand')">
+                <span><i class="fas fa-hourglass-half"></i><br>Sand</span>
+            </button>
+
+            <button class="select" onclick="window.game.updateSelection('Block')">
+                <span><i class="fas fa-square"></i><br>Block</span>
+            </button>
+
+            <button class="select" onclick="window.game.updateSelection('Water')">
+                <span><i class="fas fa-tint"></i><br>Water</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Ice')">
+                <span><i class="fas fa-icicles"></i><br>Ice</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Acid')">
+                <span><i class="fas fa-vial"></i><br>Acid</span>
+            </button>
+
+            <button class="select" onclick="window.game.updateSelection('Plant')">
+                <span><i class="fas fa-seedling"></i><br>Plant</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Wood')">
+                <span><i class="fas fa-tree"></i><br>Wood</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Tap')">
+                <span><i class="fas fa-shower"></i><br>Tap</span>
+            </button>
+
+            <button class="select" onclick="window.game.updateSelection('Fire')">
+                <span><i class="fas fa-fire"></i><br>Fire</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Lava')">
+                <span><i class="fas fa-mountain"></i><br>Lava</span>
+            </button>
+            <button class="select" onclick="window.game.updateSelection('Oil')">
+                <span><i class="fas fa-oil-can"></i><br>Oil</span>
+            </button>
+            <button class="select">
+                <a class="select" href="https://www.facebook.com/profile.php?id=100041724977557"
+                    style="text-decoration: none;">
+                    <span><i class="fas fa-user"></i><br>Info</span>
+                </a>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script type="module">
+        import Game from './Game.js'
+        window.game = new Game(
+            document.getElementById('large-screen'),
+            120,
+            120
+        )
+        window.game.play()
+
+        window.addEventListener('mousemove', (event) => { window.game.updateMousePosition(event) }, false)
+        window.addEventListener('mousedown', () => { window.game.clicked = true }, false)
+        window.addEventListener('mouseup', () => { window.game.clicked = false }, false)
+
+        window.setInterval(() => {
+            let stats = game.calculateStats()
+
+            setStats({
+                'Sand-box': 'Lam Tan Phat',
+                '______________________': '',
+                '                      ': '',
+                'State': stats.state,
+                'FPS': stats.fps,
+                'Selection': stats.selection,
+                'Moving Particles': stats.particles_moving,
+                'Total Particles': stats.particles_total
+            })
+        }, 1000)
+
+        function setStats(values) {
+            // Clear current values
+            document.querySelector('#small-screen').innerHTML = ''
+
+            // Set new values
+            for (const [key, value] of Object.entries(values)) {
+                document.querySelector('#small-screen').innerHTML += key
+
+                for (let i = 0; i < 22 - (key.length + value.toString().length); i++) {
+                    document.querySelector('#small-screen').innerHTML += '.'
+                }
+
+                document.querySelector('#small-screen').innerHTML += value + '<br>'
+            }
+        }
+    </script>
+</body>
+
+</html>
