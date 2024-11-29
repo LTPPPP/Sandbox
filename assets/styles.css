@@ -203,38 +203,22 @@ body {
     font-size: 15px;
 }
 
-/* Media Queries for Mobile */
 @media (max-width: 768px) {
     #container {
-        flex-direction: column;
-        align-items: center;
+        display: none;
     }
 
-    #left-container,
-    #right-container {
-        width: 100%;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 10px;
+    #mobile-message {
+        display: block;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 20px;
+        color: red;
     }
+}
 
-    #center-container {
-        width: 100%;
-        padding: 0;
-    }
-
-    #large-screen {
-        width: 100%;
-        height: auto;
-    }
-
-    .select {
-        width: 60px;
-        height: 60px;
-    }
-
-    .select span {
-        width: 40px;
-        height: 40px;
+@media (min-width: 769px) {
+    #mobile-message {
+        display: none;
     }
 }
