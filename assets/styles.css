@@ -210,6 +210,8 @@ body {
 
     #mobile-message {
         display: block;
+        font-weight: bold;
+        font-size: 2rem;
         text-align: center;
         margin-top: 50px;
         font-size: 20px;
@@ -220,5 +222,6 @@ body {
 @media (min-width: 769px) {
     #mobile-message {
         display: none;
+        font-weight: bold;
     }
 }
