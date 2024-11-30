@@ -75,9 +75,9 @@
             <button class="select" onclick="window.game.updateSelection('Plant')">
                 <span><i class="fas fa-seedling"></i><br>Plant</span>
             </button>
-            <!-- <button class="select" onclick="window.game.updateSelection('Cloud')">
-                <span><i class="fas fa-cloud"></i><br>Cloud</span>
-            </button> -->
+            <button class="select" onclick="window.game.updateSelection('Gas')">
+                <span><i class="fas fa-cloud"></i><br>Gas</span>
+            </button>
             <button class="select" onclick="window.game.updateSelection('Wood')">
                 <span><i class="fas fa-tree"></i><br>Wood</span>
             </button>
@@ -93,6 +93,18 @@
             </button>
             <button class="select" onclick="window.game.updateSelection('Oil')">
                 <span><i class="fas fa-oil-can"></i><br>Oil</span>
+            </button>
+            <button class="select">
+                <a class="select" href="https://www.facebook.com/profile.php?id=100041724977557"
+                    style="text-decoration: none;">
+                    <span><i class="fas fa-user"></i><br>Info</span>
+                </a>
+            </button>
+            <button class="select">
+                <a class="select" href="https://www.facebook.com/profile.php?id=100041724977557"
+                    style="text-decoration: none;">
+                    <span><i class="fas fa-user"></i><br>Info</span>
+                </a>
             </button>
             <button class="select">
                 <a class="select" href="https://www.facebook.com/profile.php?id=100041724977557"
@@ -124,14 +136,12 @@
             let stats = game.calculateStats()
 
             setStats({
-                'Sand-box': 'Lam Tan Phat',
-                '______________________': '',
-                '                      ': '',
                 'State': stats.state,
                 'FPS': stats.fps,
                 'Selection': stats.selection,
-                'Moving Particles': stats.particles_moving,
-                'Total Particles': stats.particles_total
+                'Total Particles': stats.particles_total,
+                'Gravity': stats.gravityDirection,
+                'cursor_size': stats.cursor_size,
             })
         }, 1000)
 
