@@ -10,7 +10,7 @@ export let State = {
 export { default as Air } from './elements/Air.js'
 export { default as Block } from './elements/Block.js'
 export { default as Sand } from './elements/Sand.js'
-
+// export { default as Lightning } from './elements/Lightning.js'
 export { default as Water } from './elements/Water.js'
 export { default as Ice } from './elements/Ice.js'
 export { default as Acid } from './elements/Acid.js'
