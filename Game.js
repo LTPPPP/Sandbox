@@ -22,6 +22,9 @@ export default class Game {
     mouse_x = 1
     mouse_y = 1
 
+    // Gravity
+    gravityDirection = 1; 
+
     constructor(canvas, width, height) {
         // Set up the canvas
         this.canvas = canvas
@@ -35,6 +38,19 @@ export default class Game {
             for (let y = 0; y < this.height; y++) {
                 this.particles[x * this.height + y] = new Elements.Air()
             }
+        }
+    }
+
+    Gravity() {
+        // Toggle gravity direction
+        this.gravityDirection *= -1;
+        
+        // Optional: Update UI to show current gravity direction
+        const gravityButton = document.querySelector('button.select:nth-child(1)');
+        if (gravityButton) {
+            gravityButton.innerHTML = this.gravityDirection === 1 
+                ? `<span><i class="fas fa-arrow-down"></i><br>Gravity ↓</span>` 
+                : `<span><i class="fas fa-arrow-up"></i><br>Gravity ↑</span>`;
         }
     }
 
@@ -125,7 +141,7 @@ export default class Game {
         }
     }
 
-    const sizeButton = document.querySelector('button.select:nth-child(2)')
+    const sizeButton = document.querySelector('button.select:nth-child(1)')
     if (sizeButton) {
         const currentSizeConfig = cursorSizeMap[this.cursor_size]
         sizeButton.innerHTML = `<span><i class="fas ${currentSizeConfig.icon}"></i><br>${currentSizeConfig.text}</span>`
@@ -135,7 +151,9 @@ export default class Game {
     paint(x, y) {
         let nx = Math.round(x / this.particle_size)
         let ny = Math.round(y / this.particle_size)
-
+        console.log(nx, ny);
+        console.log(this.particles);
+        console.log(this.particles[nx * this.width + ny]);
         for (let i = -this.cursor_size; i < this.cursor_size / 2; i++) {
             for (let j = -this.cursor_size; j < this.cursor_size / 2; j++) {
                 let distance = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2))
@@ -194,10 +212,10 @@ export default class Game {
                 // Gravity
                 if (
                     mutator.isNotFixed('self') &&
-                    mutator.isNotFixed('below') &&
-                    mutator.heavierThan('below')
+                    mutator.isNotFixed(this.gravityDirection === 1 ? 'below' : 'above') &&
+                    mutator.heavierThan(this.gravityDirection === 1 ? 'below' : 'above')
                 ) {
-                    mutator.swap('self', 'below')
+                    mutator.swap('self', this.gravityDirection === 1 ? 'below' : 'above')
                 } else if (
                     mutator.isNotFixed('self') &&
                     mutator.isLiquid('self') &&
@@ -207,10 +225,11 @@ export default class Game {
                 } else if (
                     mutator.isNotFixed('self') &&
                     mutator.isSolid('self') &&
-                    mutator.is(mutator.randomBelowDirection(), 'Gas')
+                    mutator.is(this.gravityDirection === 1 ? mutator.randomBelowDirection() : mutator.randomAboveDirection(), 'Gas')
                 ) {
-                    mutator.swap('self', mutator.randomBelowDirection())
+                    mutator.swap('self', this.gravityDirection === 1 ? mutator.randomBelowDirection() : mutator.randomAboveDirection())
                 }
+
 
                 // Liquid
                 if (
