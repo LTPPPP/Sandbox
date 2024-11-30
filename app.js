@@ -9,14 +9,13 @@ const ctx = canvas.getContext('2d', {
 let Element = {
     Empty: 'Empty',
     Wall: 'Wall',
-
     Sand: 'Sand',
     Water: 'Water',
     Ice: 'Ice',
     Plant: 'Plant',
     Fire: 'Fire',
-
-    Tap: 'Tap',
+    Gas: 'Gas',
+    Lightning: 'Lightning', // New element
 }
 
 let State = {

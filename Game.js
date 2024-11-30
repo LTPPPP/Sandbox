@@ -151,9 +151,6 @@ export default class Game {
     paint(x, y) {
         let nx = Math.round(x / this.particle_size)
         let ny = Math.round(y / this.particle_size)
-        console.log(nx, ny);
-        console.log(this.particles);
-        console.log(this.particles[nx * this.width + ny]);
         for (let i = -this.cursor_size; i < this.cursor_size / 2; i++) {
             for (let j = -this.cursor_size; j < this.cursor_size / 2; j++) {
                 let distance = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2))
