@@ -2,6 +2,9 @@ export let State = {
     Gas: 'Gas',
     Liquid: 'Liquid',
     Solid: 'Solid',
+    Power: 'Power',
+    Plasma: 'Plasma',
+    Lightning: 'Lightning',
 }
 
 export { default as Air } from './elements/Air.js'
@@ -12,7 +15,7 @@ export { default as Water } from './elements/Water.js'
 export { default as Ice } from './elements/Ice.js'
 export { default as Acid } from './elements/Acid.js'
 
-export { default as Cloud } from './elements/Cloud.js'
+export { default as Gas } from './elements/Gas.js'
 export { default as Plant } from './elements/Plant.js'
 export { default as Wood } from './elements/Wood.js'
 export { default as Tap } from './elements/Tap.js'

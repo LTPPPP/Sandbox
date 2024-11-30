@@ -141,7 +141,7 @@ export default class Game {
         }
     }
 
-    const sizeButton = document.querySelector('button.select:nth-child(1)')
+    const sizeButton = document.querySelector('button.select:nth-child(2)')
     if (sizeButton) {
         const currentSizeConfig = cursorSizeMap[this.cursor_size]
         sizeButton.innerHTML = `<span><i class="fas ${currentSizeConfig.icon}"></i><br>${currentSizeConfig.text}</span>`
@@ -184,6 +184,21 @@ export default class Game {
             selection: this.selection,
             particles_moving: this.particles_moving,
             particles_total: this.particles_total,
+            gravityDirection: this.gravityDirection === 1 ? 'Down⬇️' : 'Up⬆️',
+            cursor_size: (() => {
+                switch (this.cursor_size) {
+                    case this.width / 40:
+                        return 'Small';
+                    case this.width / 20:
+                        return 'Medium';
+                    case this.width / 10:
+                        return 'Large';
+                    case this.width / 5:
+                        return 'Huge';
+                    default:
+                        return 'Medium';
+                }
+            })()
         }
     }
 
