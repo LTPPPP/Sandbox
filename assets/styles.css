@@ -203,25 +203,64 @@ body {
     font-size: 15px;
 }
 
-@media (max-width: 768px) {
+
+@media screen and (max-width: 768px) {
     #container {
-        display: none;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
     }
 
-    #mobile-message {
-        display: block;
-        font-weight: bold;
-        font-size: 2rem;
-        text-align: center;
-        margin-top: 50px;
-        font-size: 20px;
-        color: red;
+    #left-container {
+        width: 100%;
+        height: 100%;
     }
-}
 
-@media (min-width: 769px) {
-    #mobile-message {
-        display: none;
-        font-weight: bold;
+    #right-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    #right-container>*+* {
+        margin-top: 5px;
+        margin-left: 0;
+    }
+
+    #small-screen {
+        font-size: 12px;
+    }
+
+    #small-screen-container {
+        width: 100%;
+    }
+
+    #small-screen {
+        padding: 10px 5px;
+    }
+
+    #small-screen-overlay {
+        box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    #large-screen,
+    #small-screen {
+        border-radius: 5px;
+    }
+
+    #large-screen-overlay,
+    #small-screen-overlay {
+        background: linear-gradient(129deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0) 35%);
+        box-shadow: inset 0 0 112px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    #large-screen-overlay::before,
+    #small-screen-overlay::before {
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        background-size: 100% 4px, 6px 100%;
+    }
+
+    #large-screen-overlay::after,
+    #small-screen-overlay::after {
+        background: rgba(18, 16, 16, 0.1);
     }
 }
